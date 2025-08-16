@@ -41,6 +41,7 @@ jobs:
           /p:FloatingPointModel=Fast
           /p:LinkTimeCodeGeneration=UseLinkTimeCodeGeneration
           /p:LinkIncremental=false
+          /p:FloatingPointExceptions=false
           /p:LinkTimeOptimization=true
           /p:EnableCOMDATFolding=true
           /p:OptimizeReferences=true
