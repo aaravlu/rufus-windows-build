@@ -24,29 +24,11 @@ jobs:
         working-directory: rufus
         # run: msbuild rufus.sln /p:Configuration=Release /p:Platform=x64 /p:DebugSymbols=false /p:EnableEnhancedInstructionSet=AVX2 /p:WholeProgramOptimization=true /p:LinkTimeCodeGeneration=UseLinkTimeCodeGeneration
         run: |
-          msbuild rufus.sln /p:Configuration=Release `
-          /p:Platform=x64 `
-          /p:DebugSymbols=false `
-          /p:WholeProgramOptimization=true `
-          /p:CL_MP=true `
-          /p:RuntimeLibrary=MultiThreadedDLL `
-          /p:Optimization=MaxSpeed `
-          /p:IntrinsicFunctions=true `
-          /p:EnableEnhancedInstructionSet=AVX2 `
-          /p:OmitFramePointers=true `
-          /p:BasicRuntimeChecks=Default `
-          /p:BufferSecurityCheck=false `
-          /p:RuntimeTypeInfo=false `
-          /p:InlineFunctionExpansion=AnySuitable `
-          /p:FavorSizeOrSpeed=Speed `
-          /p:FloatingPointModel=Fast `
-          /p:LinkTimeCodeGeneration=UseLinkTimeCodeGeneration `
-          /p:LinkIncremental=false `
-          /p:FloatingPointExceptions=false `
-          /p:LinkTimeOptimization=true `
-          /p:EnableCOMDATFolding=true `
-          /p:OptimizeReferences=true `
-          /p:AdditionalLinkOptions="/MERGE:_RDATA=.rdata"
+          msbuild rufus.sln `
+            /p:Configuration=Release `
+            /p:Platform=x64 `
+            /p:CL="/MD /MP /Oi /O2 /Gy /GL /Gw /fp:fast /arch:AVX2 /GR-" `
+            /p:Link="/OPT:REF /OPT:ICF /LTCG"
 
       - name: Archive Binary
         uses: actions/upload-artifact@v4
