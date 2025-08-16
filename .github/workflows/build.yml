@@ -27,8 +27,8 @@ jobs:
           msbuild rufus.sln `
             /p:Configuration=Release `
             /p:Platform=x64 `
-            /p:CL="/MD /MP /Oi /O2 /Gy /GL /Gw /fp:fast /arch:AVX2 /GR-" `
-            /p:Link="/OPT:REF /OPT:ICF /LTCG"
+            /p:CL="/MD /MP /Oi /O2 /Gy /GL /Gw /fp:fast /arch:AVX2 /GR- /EHc-" `
+            /p:Link="/OPT:REF /OPT:ICF /LTCG /MERGE:_RDATA=.rdata"
 
       - name: Archive Binary
         uses: actions/upload-artifact@v4
