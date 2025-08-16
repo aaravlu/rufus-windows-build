@@ -1,0 +1,23 @@
+name: Build Rufus
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Rufus
+        uses: actions/checkout@v4
+        with:
+          repository: pbatard/rufus
+          ref: refs/tags/v3.15
+          path: rufus
+
+      - name: Build Release
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: amd64
+          toolset: 14.29
+        working-directory: rufus
+        run: msbuild rufus.sln /p:Configuration=Release /p:Platform="x64"
