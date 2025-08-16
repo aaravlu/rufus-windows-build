@@ -24,11 +24,7 @@ jobs:
         working-directory: rufus
         # run: msbuild rufus.sln /p:Configuration=Release /p:Platform=x64 /p:DebugSymbols=false /p:EnableEnhancedInstructionSet=AVX2 /p:WholeProgramOptimization=true /p:LinkTimeCodeGeneration=UseLinkTimeCodeGeneration
         run: |
-          msbuild rufus.sln `
-            /p:Configuration=Release `
-            /p:Platform=x64 `
-            /p:DebugSymbols=false `
-            /p:DebugType=none
+          msbuild rufus.sln /p:Configuration=Release /p:Platform=x64 /p:DebugSymbols=false /p:DebugType=none
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
