@@ -14,10 +14,12 @@ jobs:
           ref: refs/tags/v3.15
           path: rufus
 
-      - name: Build Release
+      - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: amd64
           toolset: 14.29
+
+      - name: Build Release
         working-directory: rufus
         run: msbuild rufus.sln /p:Configuration=Release /p:Platform="x64"
