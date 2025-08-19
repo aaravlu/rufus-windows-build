@@ -23,10 +23,12 @@ jobs:
 
       - name: Build
         working-directory: rufus
-        run: msbuild rufus.sln /p:Configuration=Release /p:ExceptionHandling=false /p:Optimization=MaxSpeed /p:Platform=x64 /p:DebugSymbols=false /p:DebugInformationFormat=none /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2 /p:WholeProgramOptimization=true /p:LinkTimeCodeGeneration=UseLinkTimeCodeGeneration
+        # run: msbuild rufus.sln /p:Platform=x64 /p:ExceptionHandling=false /p:WholeProgramOptimization=true
+        run: msbuild rufus.sln /p:ExceptionHandling=false /p:Optimization=MaxSpeed /p:Platform=x64 /p:DebugSymbols=false /p:DebugInformationFormat=none /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2 /p:WholeProgramOptimization=true
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
           name: rufus
           path: |
+            rufus/x64/Debug/rufus.exe
             rufus/x64/Release/rufus.exe
