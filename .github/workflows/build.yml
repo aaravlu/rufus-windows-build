@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Release
         working-directory: rufus
-        run: msbuild sln.vcxproj /p:Configuration=Release /p:Platform=x64 /p:Optimization=MaxSpeed /p:DebugInformationFormat=none /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2
+        run: msbuild rufus.sln /p:Configuration=Release /p:Platform=x64 /p:Optimization=MaxSpeed /p:DebugInformationFormat=none /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2
         # run: msbuild rufus.sln /p:Configuration=Release /p:Platform=x64 /p:DebugSymbols=false /p:DebugType=none /p:EnableEnhancedInstructionSet=AVX2 /p:WholeProgramOptimization=true /p:LinkTimeCodeGeneration=UseLinkTimeCodeGeneration
         # run: msbuild rufus.sln /p:Configuration=Release /p:Platform=x64 /p:DebugSymbols=false /p:DebugType=none
       - name: Archive Binary
