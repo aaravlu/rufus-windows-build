@@ -23,7 +23,7 @@ jobs:
 
       - name: Build
         working-directory: rufus
-        run: msbuild rufus.sln /p:Platform=x64 /p:Configuration=Release /p:WholeProgramOptimization=true /p:AdditionalOptions="/guard:cf- /GS-" /p:LinkAdditionalOptions="/GUARD:CF-"
+        run: msbuild rufus.sln /p:Platform=x64 /p:Configuration=Release /p:WholeProgramOptimization=true /p:ClCompileAdditionalOptions="/EH-"
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
