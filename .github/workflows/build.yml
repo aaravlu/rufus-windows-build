@@ -1,18 +1,25 @@
-name: Build Rufus
+name: Build rufus
 
 on:
-  workflow_dispatch: {}
+  push:
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
-      - name: Checkout Rufus
+      - name: Checkout rufus
         uses: actions/checkout@v4
         with:
           repository: pbatard/rufus
           ref: refs/tags/v3.15
           path: rufus
+
+      - name: Setup msbuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: "16.11"
+          msbuild-architecture: x64
 
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
@@ -23,11 +30,16 @@ jobs:
 
       - name: Build
         working-directory: rufus
-        run: msbuild rufus.sln /p:Platform=x64 /p:Configuration=Release /p:WholeProgramOptimization=true /p:ClCompileAdditionalOptions="/EH-"
+        run: msbuild rufus.sln
+          /p:Platform=x64 `
+          /p:Configuration=Release `
+          /p:WholeProgramOptimization=true `
+          /p:FunctionLevelLinking=true `
+          /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2
+
       - name: Archive Binary
         uses: actions/upload-artifact@v4
         with:
           name: rufus
           path: |
-            rufus/x64/Debug/rufus.exe
             rufus/x64/Release/rufus.exe
