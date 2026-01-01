@@ -8,7 +8,7 @@ jobs:
   build:
     env:
       PROJECT_REPOSITORY: pbatard/rufus
-      PROJECT_VERSION: v3.15
+      PROJECT_VERSION: v3.22
       PROJECT_PATH: rufus
       PROJECT_BIN: rufus
     strategy:
