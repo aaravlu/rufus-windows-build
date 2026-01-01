@@ -23,10 +23,10 @@ jobs:
           ref: refs/tags/${{ env.PROJECT_VERSION }}
           path: ${{ env.PROJECT_PATH }}
 
-      # - name: Setup msbuild
-      #   uses: microsoft/setup-msbuild@v2
-      #   with:
-      #     msbuild-architecture: x64
+      - name: Setup msbuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
 
       - name: Build
         working-directory: rufus
@@ -45,4 +45,6 @@ jobs:
         with:
           name: ${{ env.PROJECT_BIN }}_${{ runner.os }}
           path: |
+            ${{ env.PROJECT_PATH }}/x64/Release/*.dll
+
             ${{ env.PROJECT_PATH }}/x64/Release/${{ env.PROJECT_BIN }}.exe
